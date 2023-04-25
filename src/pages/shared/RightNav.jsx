@@ -1,6 +1,7 @@
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import { FaFacebook, FaGithub, FaGoogle, FaInstagram, FaTwitter } from 'react-icons/fa';
+import QZone from './QZone';
 
 const RightNav = () => {
     return (
@@ -18,6 +19,9 @@ const RightNav = () => {
                         <Button className='bg-white text-dark border border-secondary'><FaTwitter className='text-info'></FaTwitter> Twitter</Button>
                         <Button className='bg-white text-dark border border-secondary'><FaInstagram className='text-danger'></FaInstagram> Instagram</Button>
                     </ButtonGroup>
+                    <div className='mt-4 bg-secondary'>
+                        <QZone className='my-4'></QZone>
+                    </div>
                 </div>
             </div>
         </div>
