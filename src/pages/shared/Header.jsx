@@ -10,7 +10,7 @@ import profileImage from '../../assets/profile.png';
 
 const Header = () => {
     return (
-        <Container>
+        <Container className='mt-5 mb-3'>
             <div className='text-center'>
                 <img src={logo} alt="" />
                 <p>Journalism Without Fear or Favour</p>

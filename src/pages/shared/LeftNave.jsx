@@ -1,5 +1,5 @@
-import React from 'react'
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const LeftNave = () => {
     const [categories, setCategories] = useState([])
@@ -14,8 +14,15 @@ const LeftNave = () => {
         <div>
             <h4 className='fw-bold mb-4'>All Categories</h4>
             {
-                categories.map(category => <p key={category.id}><button className='text-secondary btn btn-link text-decoration-none' type="button">{category.name}</button></p>)
-                
+                categories.map(category => <p key={category.id}
+                >
+                    <Link to={`/category/${category.id}`}>
+                        <button className='text-secondary btn btn-link text-decoration-none' type="button">
+                            {category.name}
+                        </button>
+                    </Link>
+                </p>)
+
             }
         </div>
     );
