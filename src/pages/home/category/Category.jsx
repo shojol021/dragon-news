@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import NewsCard from '../newsCard/NewsCard';
 
 const Category = () => {
     const { id } = useParams()
@@ -7,16 +8,17 @@ const Category = () => {
     const [categoryNews, setCategoryNews] = useState([])
     useEffect(() => {
         fetch(`http://localhost:3000/categories/${id}`)
-        .then(res => res.json())
-        .then(data => setCategoryNews(data))
-        .catch(err => console.log(err))
+            .then(res => res.json())
+            .then(data => setCategoryNews(data))
+            .catch(err => console.log(err))
     }, [id])
 
     return (
         <div>
+            <h2></h2>
             <div>
                 {
-                    categoryNews.map(news => <p key={news._id}>{news.title}</p>)
+                    categoryNews.map(news => <NewsCard key={news._id} news={news}></NewsCard>)
                 }
             </div>
         </div>
