@@ -6,9 +6,9 @@ const QZone = () => {
     return (
         <div className='p-4'>
             <h3 className='pb-3'>Q-Zone</h3>
-            <img src={qZone1} alt="" />
-            <img src={qZone2} alt="" />
-            <img src={qZone3} alt="" />
+            <img className='w-100' src={qZone1} alt="" />
+            <img className='w-100' src={qZone2} alt="" />
+            <img className='w-100' src={qZone3} alt="" />
         </div>
     );
 };
