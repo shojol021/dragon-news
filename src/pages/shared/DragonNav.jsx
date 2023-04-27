@@ -1,9 +1,12 @@
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import profileImage from '../../assets/profile.png';
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const DragonNav = () => {
-    const user = null
+    const {user} = useContext(AuthContext)
+
     return (
         <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
             <Container>
@@ -17,6 +20,7 @@ const DragonNav = () => {
                     </Nav>
                     <Nav>
                         <img style={{ width: '35px' }} src={profileImage} alt="" className="me-2" />
+                        <p>{user?.name}</p>
                         {user ? <Button variant="dark">Signout</Button> : <Link to='/login'><Button variant="dark">Login</Button></Link>}
                     </Nav>
                 </Navbar.Collapse>

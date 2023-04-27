@@ -1,13 +1,19 @@
+import { useContext } from "react";
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const Register = () => {
     const [error, setError] = useState('')
     const [success, setSuccess] = useState('')
+
+    const {createUser, verifyEmail } = useContext(AuthContext)
     
     const handleSignup = (e) => {
         e.preventDefault()
+        setError('')
+        setSuccess('')
         const form = e.target;
         const name = form.name.value;
         const email = form.email.value;
@@ -24,7 +30,16 @@ const Register = () => {
             return
         }
 
-        
+        createUser(email, password)
+        .then(userDetails => {
+            console.log(userDetails)
+            verifyEmail(userDetails.user)
+            setSuccess(`A verification mail sent to ${userDetails.user.email}`)
+        })
+        .catch(error => {
+            console.log(error.message)
+            setError(error.message)
+        })
     }
     
     return (
