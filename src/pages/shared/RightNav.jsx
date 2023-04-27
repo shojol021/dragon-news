@@ -7,10 +7,34 @@ import { useContext } from 'react';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 const RightNav = () => {
-    const { googleLogin, setUser } = useContext(AuthContext)
+    const { googleLogin, facebookLogin, setUser, githubLogin } = useContext(AuthContext)
 
     const handleGoogleLogin = () => {
         googleLogin()
+            .then(res => {
+                const loggedUser = res.user;
+                console.log(loggedUser)
+                setUser(loggedUser)
+            })
+            .catch(error => {
+                console.log(error.message)
+            })
+    }
+
+    const handleFacebookLogin = () => {
+        facebookLogin()
+            .then(res => {
+                const loggedUser = res.user;
+                console.log(loggedUser)
+                setUser(loggedUser)
+            })
+            .catch(error => {
+                console.log(error.message)
+            })
+    }
+
+    const handleGithubLogin = () => {
+        githubLogin()
             .then(res => {
                 const loggedUser = res.user;
                 console.log(loggedUser)
@@ -26,8 +50,8 @@ const RightNav = () => {
             <div>
                 <h4 className='fw-bolder'>Login With</h4>
                 <Button onClick={handleGoogleLogin} className='my-2 w-100' variant="outline-success"><FaGoogle></FaGoogle> Login with Google</Button>{' '}
-                <Button className='my-2 w-100' variant="outline-dark"><FaGithub></FaGithub> Login with Github</Button>
-                <Button className='my-2 w-100' variant="outline-primary"><FaFacebook></FaFacebook> Login with Github</Button>
+                <Button onClick={handleGithubLogin} className='my-2 w-100' variant="outline-dark"><FaGithub></FaGithub> Login with Github</Button>
+                <Button onClick={handleFacebookLogin} className='my-2 w-100' variant="outline-primary"><FaFacebook></FaFacebook> Login with Facebook</Button>
             </div>
             <div>
                 <h4 className='fw-bolder mt-4'>Find Us On</h4>

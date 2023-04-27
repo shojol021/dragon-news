@@ -5,7 +5,15 @@ import { useContext } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const DragonNav = () => {
-    const {user} = useContext(AuthContext)
+    const {user, logOut} = useContext(AuthContext)
+
+    const handleLogOut = () => {
+        console.log('1')
+        logOut()
+        .then(res => {
+            console.log(res, 'logged out')
+        })
+    }
 
     return (
         <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
@@ -19,9 +27,9 @@ const DragonNav = () => {
                         <Link className="me-4 text-decoration-none text-secondary" to='/'>Career</Link>
                     </Nav>
                     <Nav>
-                        <img style={{ width: '35px' }} src={profileImage} alt="" className="me-2" />
+                        <img style={{ width: '35px' }} src={user?.photoURL? user.photoURL : profileImage} alt="" className="me-2" />
                         <p className="me-2">{user?.email}</p>
-                        {user ? <Button variant="dark">Signout</Button> : <Link to='/login'><Button variant="dark">Login</Button></Link>}
+                        {user ? <Button onClick={handleLogOut} variant="dark">Signout</Button> : <Link to='/login'><Button variant="dark">Login</Button></Link>}
                     </Nav>
                 </Navbar.Collapse>
             </Container>
