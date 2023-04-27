@@ -54,7 +54,7 @@ const Login = () => {
                     <p className="text-danger">{error} </p>
                     <p className="text-success">{success} </p>
                 </Form.Text>
-                <Button variant="dark" type="submit">
+                <Button variant="dark" type="submit" className="w-100">
                     Login
                 </Button>
                 <Form.Text className="text-muted">

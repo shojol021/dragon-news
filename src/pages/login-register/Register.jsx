@@ -70,8 +70,8 @@ const Register = () => {
                     <p className="text-danger">{error} </p>
                     <p className="text-success">{success} </p>
                 </Form.Text>
-                <Button variant="dark" type="submit">
-                    Login
+                <Button variant="dark" type="submit" className="w-100">
+                    Register
                 </Button>
                 <Form.Text className="text-muted">
                     <p className="mt-2">Already have an account? <Link to='/login'>Login here</Link></p>

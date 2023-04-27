@@ -3,14 +3,31 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import { FaFacebook, FaGithub, FaGoogle, FaInstagram, FaTwitter } from 'react-icons/fa';
 import QZone from './QZone';
 import Newspaper from './Newspaper';
+import { useContext } from 'react';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 const RightNav = () => {
+    const { googleLogin, setUser } = useContext(AuthContext)
+
+    const handleGoogleLogin = () => {
+        googleLogin()
+            .then(res => {
+                const loggedUser = res.user;
+                console.log(loggedUser)
+                setUser(loggedUser)
+            })
+            .catch(error => {
+                console.log(error.message)
+            })
+    }
+
     return (
         <div>
             <div>
                 <h4 className='fw-bolder'>Login With</h4>
-                <Button className='my-2 w-100' variant="outline-success"><FaGoogle></FaGoogle> Login with Google</Button>{' '}
+                <Button onClick={handleGoogleLogin} className='my-2 w-100' variant="outline-success"><FaGoogle></FaGoogle> Login with Google</Button>{' '}
                 <Button className='my-2 w-100' variant="outline-dark"><FaGithub></FaGithub> Login with Github</Button>
+                <Button className='my-2 w-100' variant="outline-primary"><FaFacebook></FaFacebook> Login with Github</Button>
             </div>
             <div>
                 <h4 className='fw-bolder mt-4'>Find Us On</h4>
