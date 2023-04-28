@@ -41,7 +41,7 @@ const RightNav = () => {
                 setUser(loggedUser)
             })
             .catch(error => {
-                console.log(error.message)
+                console.log(error)
             })
     }
 
