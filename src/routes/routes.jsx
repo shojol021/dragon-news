@@ -6,6 +6,7 @@ import SingleNews from "../pages/home/singleNews/SingleNews";
 import Login from "../pages/login-register/Login";
 import Register from "../pages/login-register/Register";
 import LoginLayout from "../layouts/LoginLayout";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -50,7 +51,7 @@ const router = createBrowserRouter([
             },
             {
                 path: ':id',
-                element: <SingleNews></SingleNews>,
+                element: <PrivateRoute><SingleNews></SingleNews></PrivateRoute>,
                 loader: ({params}) => fetch(`http://localhost:3000/news/${params.id}`)
             }
         ]
