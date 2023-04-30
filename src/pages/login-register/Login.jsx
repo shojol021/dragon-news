@@ -12,9 +12,7 @@ const Login = () => {
     const { setUser, userLogin } = useContext(AuthContext)
     const location = useLocation()
     const navigate = useNavigate()
-    console.log('login', location)
     const from = location.state?.loc.pathname || '/category/0';
-    console.log(from)
 
     const handleLogin = (e) => {
         e.preventDefault()
@@ -23,7 +21,6 @@ const Login = () => {
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password)
 
         userLogin(email, password)
             .then(res => {
@@ -31,7 +28,6 @@ const Login = () => {
                     return setError('Please verify your email first')
                 }
                 const loggedUser = res.user;
-                console.log(loggedUser)
                 setUser(loggedUser)
                 setSuccess('Successfully logged in')
                 navigate(from)
