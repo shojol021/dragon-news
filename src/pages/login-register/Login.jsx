@@ -12,6 +12,7 @@ const Login = () => {
     const { setUser, userLogin } = useContext(AuthContext)
     const location = useLocation()
     const navigate = useNavigate()
+    console.log(navigate)
     const from = location.state?.loc.pathname || '/category/0';
 
     const handleLogin = (e) => {
