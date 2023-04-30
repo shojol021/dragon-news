@@ -7,6 +7,8 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 const Register = () => {
     const [error, setError] = useState('')
     const [success, setSuccess] = useState('')
+    const [accept, setAccept] = useState(false)
+    console.log(accept)
 
     const {createUser, verifyEmail } = useContext(AuthContext)
     
@@ -15,11 +17,9 @@ const Register = () => {
         setError('')
         setSuccess('')
         const form = e.target;
-        const name = form.name.value;
         const email = form.email.value;
         const confirm = form.confirm.value;
         const password = form.password.value;
-        console.log(name, email, password, confirm)
         
         if(password.length < 6){
             setError('At least 6 characters')
@@ -32,7 +32,6 @@ const Register = () => {
 
         createUser(email, password)
         .then(userDetails => {
-            console.log(userDetails)
             verifyEmail(userDetails.user)
             setSuccess(`A verification mail sent to ${userDetails.user.email}`)
         })
@@ -40,6 +39,11 @@ const Register = () => {
             console.log(error.message)
             setError(error.message)
         })
+    }
+
+    const handleAccept = (event) => {
+        const clicked = event.target.checked
+        setAccept(clicked)
     }
     
     return (
@@ -64,13 +68,13 @@ const Register = () => {
                     <Form.Control type="password" name="confirm" placeholder="Confirm password" required/>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <Form.Check type="checkbox" label="Accept terms and condition" required />
+                    <Form.Check onClick={handleAccept} type="checkbox" label={<>Accept <Link to='/terms'>terms and condition</Link></>}  />
                 </Form.Group>
                 <Form.Text className="text-muted">
                     <p className="text-danger">{error} </p>
                     <p className="text-success">{success} </p>
                 </Form.Text>
-                <Button variant="dark" type="submit" className="w-100">
+                <Button variant="dark" type="submit" className="w-100" disabled={!accept}>
                     Register
                 </Button>
                 <Form.Text className="text-muted">

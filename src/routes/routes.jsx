@@ -7,6 +7,7 @@ import Login from "../pages/login-register/Login";
 import Register from "../pages/login-register/Register";
 import LoginLayout from "../layouts/LoginLayout";
 import PrivateRoute from "./PrivateRoute";
+import Terms from "../pages/login-register/Terms";
 
 const router = createBrowserRouter([
     {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register></Register>
+            },
+            {
+                path: '/terms',
+                element: <Terms></Terms>
             }
         ]
     },
@@ -52,7 +57,7 @@ const router = createBrowserRouter([
             {
                 path: ':id',
                 element: <PrivateRoute><SingleNews></SingleNews></PrivateRoute>,
-                loader: ({params}) => fetch(`http://localhost:3000/news/${params.id}`)
+                loader: ({params}) => fetch(`https://dragon-news-server-shojol021.vercel.app/news/${params.id}`)
             }
         ]
         

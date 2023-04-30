@@ -2,16 +2,19 @@ import { useContext } from "react";
 import { Button } from "react-bootstrap";
 import { FaFacebook, FaGithub, FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const SocialLogin = () => {
     const { googleLogin, facebookLogin, setUser, githubLogin } = useContext(AuthContext)
-
+    const navigate = useNavigate()
+    const location = useLocation()
+    const from = location.state?.loc.pathname || '/category/0';
     const handleGoogleLogin = () => {
         googleLogin()
             .then(res => {
                 const loggedUser = res.user;
-                console.log(loggedUser)
                 setUser(loggedUser)
+                navigate(from)
             })
             .catch(error => {
                 console.log(error.message)
@@ -22,7 +25,6 @@ const SocialLogin = () => {
         facebookLogin()
             .then(res => {
                 const loggedUser = res.user;
-                console.log(loggedUser)
                 setUser(loggedUser)
             })
             .catch(error => {
@@ -34,7 +36,6 @@ const SocialLogin = () => {
         githubLogin()
             .then(res => {
                 const loggedUser = res.user;
-                console.log(loggedUser)
                 setUser(loggedUser)
             })
             .catch(error => {

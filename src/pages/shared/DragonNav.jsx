@@ -9,7 +9,6 @@ const DragonNav = () => {
     const { user, logOut, loading } = useContext(AuthContext)
 
     const handleLogOut = () => {
-        console.log('1')
         logOut()
             .then(res => {
                 console.log(res, 'logged out')

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Button, Form } from "react-bootstrap";
-import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { useState } from "react";
 import SocialLogin from "../shared/SocialLogin";

@@ -7,7 +7,7 @@ const Category = () => {
 
     const [categoryNews, setCategoryNews] = useState([])
     useEffect(() => {
-        fetch(`http://localhost:3000/categories/${id}`)
+        fetch(`https://dragon-news-server-shojol021.vercel.app/categories/${id}`)
             .then(res => res.json())
             .then(data => setCategoryNews(data))
             .catch(err => console.log(err))
