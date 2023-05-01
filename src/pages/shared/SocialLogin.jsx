@@ -48,6 +48,7 @@ const SocialLogin = () => {
             .then(res => {
                 const loggedUser = res.user;
                 setUser(loggedUser)
+                console.log(loggedUser)
             })
             .catch(error => {
                 console.log(error)
